@@ -3,3 +3,33 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2ebdb;
+}
+
+.calc-container {
+    border: 3px solid black;
+    box-shadow: black 7px 7px 0px;
+    max-height: 500px;
+    height: 90%;
+    max-width: 320px;
+    width: 90%;
+    border-radius: 10px;
+}
+
+.result-container {
+    width: 100%;
+    height: 25%;
+}
+
+.function-container {
+    width: 100%;
+    height: 75%;
+    background: #a4d8fb;
+    border-radius: 10px;
+}
