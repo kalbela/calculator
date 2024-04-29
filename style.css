@@ -29,6 +29,26 @@ body {
     width: 100%;
     height: 25%;
     border-bottom: 3px solid rgb(67, 71, 76);
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+}
+
+.history-para {
+    font-size: 17px;
+    color: #838383;
+    font-weight: 600;
+    position: absolute;
+    right: 7%;
+    top: 25%;
+}
+
+.input-para {
+    font-size: 26px;
+    font-weight: 800;
+    position: absolute;
+    right: 7%;
+    top: 50%;
 }
 
 .function-container {
