@@ -64,6 +64,13 @@ button:hover {
     cursor: pointer;
 }
 
+button:active {
+    box-shadow: none;
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
+
 #btn-clear, #btn-delete {
     letter-spacing: 2px;
 }
