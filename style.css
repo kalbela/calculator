@@ -41,6 +41,7 @@ body {
     position: absolute;
     right: 7%;
     top: 25%;
+    width: max-content;
 }
 
 .input-para {
@@ -49,6 +50,7 @@ body {
     position: absolute;
     right: 7%;
     top: 50%;
+    width: max-content;
 }
 
 .function-container {
