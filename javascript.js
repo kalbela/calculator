@@ -23,12 +23,18 @@ buttons.forEach(button => {
             else inputPara.textContent = inputPara.textContent.slice(0, -1)
             calculationString = calculationString.slice(0, -1);
 
-        } else if (operations.includes(currentBtn)) {
+        } else if (currentBtn === "÷" || currentBtn === "×") {
             if (lastBtn === "." || !isNaN(lastBtn) && lastBtn !== " ") {
                 inputPara.textContent += ` ${currentBtn} `;
+
                 if (currentBtn === "×") calculationString += "*";
                 else if (currentBtn === "÷") calculationString += "/";
-                else calculationString += currentBtn;
+            }
+
+        } else if (currentBtn === "-" || currentBtn === "+") {
+            if (lastBtn !== " ") {
+                inputPara.textContent += ` ${currentBtn} `;
+                calculationString += currentBtn;
             }
 
         } else if (currentBtn === ".") {
