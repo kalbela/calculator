@@ -65,7 +65,6 @@ buttons.forEach(button => {
                 calculationString += currentBtn;
             }
         }
-        console.log(calculationString)
     })
 })
 
