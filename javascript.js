@@ -18,6 +18,10 @@ buttons.forEach(button => {
             inputPara.textContent = "";
         }
 
+        if (currentBtn !== "n") {
+            historyPara.textContent = "";
+        }
+
         if (currentBtn === "r") { /*refers to clear*/
             inputPara.textContent = "";
             calculationString = "";
