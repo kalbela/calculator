@@ -14,10 +14,6 @@ buttons.forEach(button => {
         let lastBtn = inputPara.textContent.at(-1);
         let currentBtn = button.getAttribute("id").at(-1);
 
-        if (inputPara.textContent.endsWith("y") || inputPara.textContent.endsWith("r")) { /*refers to infinity & error*/
-            inputPara.textContent = "";
-        }
-
         if (currentBtn !== "n") {
             historyPara.textContent = "";
         }
@@ -27,13 +23,31 @@ buttons.forEach(button => {
             calculationString = "";
 
         } else if (currentBtn === "e") { /*refers to delete*/
+            if (inputPara.textContent.includes("Infinity")) {
+                inputPara.textContent = "";
+                calculationString = "";
+            }
             if (lastBtn === " ") inputPara.textContent = inputPara.textContent.slice(0, -3)
             else inputPara.textContent = inputPara.textContent.slice(0, -1)
             calculationString = calculationString.slice(0, -1);
 
         } else if (currentBtn === "n") { /*refers to equation*/
-            if (!operations.includes(calculationString.at(-1)) || inputPara.textContent === "") {
+            if (!operations.includes(calculationString.at(-1)) && inputPara.textContent !== "" && isNaN(inputPara.textContent)) {
+
                 if (calculationString.at(-1) === ".") inputPara.textContent = "Error";
+
+                else if (inputPara.textContent.includes("-Infinity")) {
+                    historyPara.textContent = inputPara.textContent + " ="
+                    inputPara.textContent = "-Infinity";
+                    calculationString = inputPara.textContent;
+                }
+
+                else if (inputPara.textContent.includes("Infinity")) {
+                    historyPara.textContent = inputPara.textContent + " ="
+                    inputPara.textContent = "Infinity";
+                    calculationString = inputPara.textContent;
+                }
+
                 else {
                     historyPara.textContent = inputPara.textContent + " ="
                     inputPara.textContent = calculate(calculationString);
