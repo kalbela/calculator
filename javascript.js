@@ -35,27 +35,15 @@ buttons.forEach(button => {
 
                 if (calculationString.at(-1) === ".") inputPara.textContent = "Error";
 
-                else if (inputPara.textContent.includes("-Infinity")) {
-                    historyPara.textContent = inputPara.textContent + " ="
-                    inputPara.textContent = "-Infinity";
-                    calculationString = inputPara.textContent;
-                }
-
-                else if (inputPara.textContent.includes("Infinity")) {
-                    historyPara.textContent = inputPara.textContent + " ="
-                    inputPara.textContent = "Infinity";
-                    calculationString = inputPara.textContent;
-                }
-
                 else {
                     historyPara.textContent = inputPara.textContent + " ="
                     inputPara.textContent = calculate(calculationString);
-                    calculationString = calculate(calculationString);
+                    calculationString = inputPara.textContent;
                 }
             }
 
         } else if (operations.includes(currentBtn, 1)) {
-            if (lastBtn === "." || !isNaN(lastBtn) && lastBtn !== " ") {
+            if (lastBtn === "y" || lastBtn === "." || !isNaN(lastBtn) && lastBtn !== " ") {
                 inputPara.textContent += ` ${currentBtn} `;
 
                 calculationString += currentBtn;
@@ -65,7 +53,7 @@ buttons.forEach(button => {
             if (inputPara.textContent === "" || inputPara.textContent.at(-2) === "÷" || inputPara.textContent.at(-2) === "×") {
                 inputPara.textContent += `${currentBtn}`;
                 calculationString += currentBtn;
-            } else if ((lastBtn !== " " && !isNaN(lastBtn)) || lastBtn === ".") {
+            } else if (lastBtn === "y" || (lastBtn !== " " && !isNaN(lastBtn)) || lastBtn === ".") {
                 inputPara.textContent += ` ${currentBtn} `;
                 calculationString += currentBtn;
             }
@@ -140,14 +128,6 @@ function operate(string, operator) {
         case "÷":
             result = firstNum / secondNum;
     }
-
-    console.log(`index ${operationIndex}`);
-    console.log(`previous index ${previousOperationIndex}`);
-    console.log(`following index ${followingOperationIndex}`);
-    console.log(`first number ${firstNum}`);
-    console.log(`second number ${secondNum}`);
-    console.log(`result ${result}`);
-    console.log(`output ${string.slice(0, previousOperationIndex+1) + result + string.slice(followingOperationIndex)}`);
 
     return string.slice(0, previousOperationIndex+1) + result + string.slice(followingOperationIndex);
 }
