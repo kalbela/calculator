@@ -5,7 +5,7 @@ let buttons = document.querySelectorAll("button");
 let historyPara = document.querySelector(".history-para");
 let inputPara = document.querySelector(".input-para");
 
-let operations = ["+", "-", "×", "÷"]
+let operations = ["-", "+", "×", "÷"]
 
 let calculationString = "";
 
@@ -54,15 +54,18 @@ buttons.forEach(button => {
                 }
             }
 
-        } else if (currentBtn === "÷" || currentBtn === "×") {
+        } else if (operations.includes(currentBtn, 1)) {
             if (lastBtn === "." || !isNaN(lastBtn) && lastBtn !== " ") {
                 inputPara.textContent += ` ${currentBtn} `;
 
                 calculationString += currentBtn;
             }
 
-        } else if (currentBtn === "-" || currentBtn === "+") {
-            if (lastBtn !== " ") {
+        } else if (currentBtn === "-") {
+            if (inputPara.textContent === "" || inputPara.textContent.at(-2) === "÷" || inputPara.textContent.at(-2) === "×") {
+                inputPara.textContent += `${currentBtn}`;
+                calculationString += currentBtn;
+            } else if ((lastBtn !== " " && !isNaN(lastBtn)) || lastBtn === ".") {
                 inputPara.textContent += ` ${currentBtn} `;
                 calculationString += currentBtn;
             }
@@ -113,7 +116,7 @@ function operate(string, operator) {
     }
 
     for (let i = operationIndex+1; i <= string.length; ++i) {
-        if (operations.includes(string[i])) {
+        if (operations.includes(string[i]) && !isNaN(string[i-1])) {
             followingOperationIndex = i;
             break;
         }
@@ -137,6 +140,14 @@ function operate(string, operator) {
         case "÷":
             result = firstNum / secondNum;
     }
+
+    console.log(`index ${operationIndex}`);
+    console.log(`previous index ${previousOperationIndex}`);
+    console.log(`following index ${followingOperationIndex}`);
+    console.log(`first number ${firstNum}`);
+    console.log(`second number ${secondNum}`);
+    console.log(`result ${result}`);
+    console.log(`output ${string.slice(0, previousOperationIndex+1) + result + string.slice(followingOperationIndex)}`);
 
     return string.slice(0, previousOperationIndex+1) + result + string.slice(followingOperationIndex);
 }
