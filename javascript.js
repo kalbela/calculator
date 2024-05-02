@@ -23,11 +23,10 @@ buttons.forEach(button => {
             calculationString = "";
 
         } else if (currentBtn === "e") { /*refers to delete*/
-            if (inputPara.textContent.includes("Infinity")) {
-                inputPara.textContent = "";
-                calculationString = "";
-            }
-            if (lastBtn === " ") inputPara.textContent = inputPara.textContent.slice(0, -3)
+            if (inputPara.textContent.endsWith("Infinity")) {
+                inputPara.textContent = inputPara.textContent.slice(0, -8);
+                calculationString = calculationString.slice(0, -7); 
+            } else if (lastBtn === " ") inputPara.textContent = inputPara.textContent.slice(0, -3)
             else inputPara.textContent = inputPara.textContent.slice(0, -1)
             calculationString = calculationString.slice(0, -1);
 
