@@ -94,10 +94,10 @@ function operate(string, operator) {
     if (operationIndex === -1) return string;
 
     let previousOperationIndex = -1;
-    let followingOperationIndex = string.length + 1;
+    let followingOperationIndex = string.length;
 
     for (let i = operationIndex-1; i > 0; --i) {
-        if (operations.includes(string[i])) {
+        if (operations.includes(string[i]) && !isNaN(string[i-1])) {
             previousOperationIndex = i;
             break;
         }
