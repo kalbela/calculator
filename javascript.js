@@ -11,10 +11,14 @@ let calculationString = "";
 
 buttons.forEach(button => {
     button.addEventListener("click", event => {
+        let secondLastBtn = inputPara.textContent.at(-2);
         let lastBtn = inputPara.textContent.at(-1);
         let currentBtn = button.getAttribute("id").at(-1);
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
+
+        console.log(`lastBtn = ${lastBtn}`);
+        console.log(`secondLastBtn = ${secondLastBtn}`);
 
         if (currentBtn !== "n") {
             historyPara.textContent = "";
@@ -52,7 +56,7 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === "-") {
-            if (inputPara.textContent === "" || inputPara.textContent.at(-2) === "÷" || inputPara.textContent.at(-2) === "×") {
+            if (inputPara.textContent === "" || secondLastBtn === "÷" || secondLastBtn === "×") {
                 inputPara.textContent += `${currentBtn}`;
                 calculationString += currentBtn;
             } else if (lastBtn === "y" || (lastBtn !== " " && !isNaN(lastBtn)) || lastBtn === ".") {
@@ -67,7 +71,7 @@ buttons.forEach(button => {
             }
 
         } else {
-            if (lastBtn === "0" && (inputPara.textContent.at(-2) === " " || !inputPara.textContent.at(-2))) {
+            if (lastBtn === "0" && (secondLastBtn === " " || !secondLastBtn)) {
                 inputPara.textContent = inputPara.textContent.slice(0, -1) + currentBtn;
                 calculationString = calculationString.slice(0, -1) + currentBtn;
             } else {
