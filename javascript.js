@@ -16,6 +16,7 @@ buttons.forEach(button => {
         let currentBtn = button.getAttribute("id").at(-1);
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
+        console.log(lastIndexOfOperator)
 
         if (currentBtn !== "n") {
             historyPara.textContent = "";
@@ -36,13 +37,17 @@ buttons.forEach(button => {
         } else if (currentBtn === "n") { /*refers to equation*/
             if (!operations.includes(calculationString.at(-1)) && inputPara.textContent !== "" && isNaN(inputPara.textContent)) {
 
-                if (calculationString.at(-1) === ".") inputPara.textContent = "Error";
+                // if (calculationString.at(-1) === ".") inputPara.textContent = "Error";
 
-                else {
-                    historyPara.textContent = inputPara.textContent + " ="
-                    inputPara.textContent = calculate(calculationString);
-                    calculationString = inputPara.textContent;
-                }
+                // else {
+                //     historyPara.textContent = inputPara.textContent + " ="
+                //     inputPara.textContent = calculate(calculationString);
+                //     calculationString = inputPara.textContent;
+                // }
+
+                historyPara.textContent = inputPara.textContent + " =";
+                inputPara.textContent = calculate(calculationString);
+                calculationString = inputPara.textContent;
             }
 
         } else if (operations.includes(currentBtn, 1)) {
@@ -62,7 +67,7 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === ".") {
-            if (lastBtn === undefined || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
+            if (lastBtn === undefined || (secondLastBtn === undefined && !isNaN(lastBtn)) || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
                 inputPara.textContent += currentBtn;
                 calculationString += currentBtn;
             }
