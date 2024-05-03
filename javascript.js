@@ -83,7 +83,7 @@ function calculate(string) {
     operators1.forEach(operator => string = operate(string, operator));
     operators2.forEach(operator => string = operate(string, operator));
 
-    if (!string.endsWith("y") && +string % 1 !== 0 && string.length-string.indexOf(".") > 5) return (+string).toFixed(5);
+    if (!string.endsWith("y") && +string % 1 !== 0 && string.length-string.indexOf(".") > 8) return (+string).toFixed(8);
     return string;
 }
 
