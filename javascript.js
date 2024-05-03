@@ -42,7 +42,7 @@ buttons.forEach(button => {
             }
 
         } else if (operations.includes(currentBtn, 1)) {
-            if (lastBtn === "y" || lastBtn === "." || !isNaN(lastBtn) && lastBtn !== " ") {
+            if (lastBtn === "y" || (lastBtn === "." && !isNaN(secondLastBtn) && secondLastBtn !== " ") || (!isNaN(lastBtn) && lastBtn !== " ")) {
                 inputPara.textContent += ` ${currentBtn} `;
 
                 calculationString += currentBtn;
@@ -52,7 +52,7 @@ buttons.forEach(button => {
             if (inputPara.textContent === "" || secondLastBtn === "÷" || secondLastBtn === "×") {
                 inputPara.textContent += `${currentBtn}`;
                 calculationString += currentBtn;
-            } else if (lastBtn === "y" || (lastBtn !== " " && !isNaN(lastBtn)) || lastBtn === ".") {
+            } else if (lastBtn === "y" || (lastBtn !== " " && !isNaN(lastBtn)) || (lastBtn === "." && !isNaN(secondLastBtn) && secondLastBtn !== " ")) {
                 inputPara.textContent += ` ${currentBtn} `;
                 calculationString += currentBtn;
             }
