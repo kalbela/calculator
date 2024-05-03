@@ -14,6 +14,8 @@ buttons.forEach(button => {
         let lastBtn = inputPara.textContent.at(-1);
         let currentBtn = button.getAttribute("id").at(-1);
 
+        let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
+
         if (currentBtn !== "n") {
             historyPara.textContent = "";
         }
@@ -59,7 +61,7 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === ".") {
-            if (!isNaN(lastBtn) && lastBtn !== " ") {
+            if (lastBtn === undefined || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
                 inputPara.textContent += currentBtn;
                 calculationString += currentBtn;
             }
