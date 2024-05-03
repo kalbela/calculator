@@ -17,9 +17,6 @@ buttons.forEach(button => {
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
 
-        console.log(`lastBtn = ${lastBtn}`);
-        console.log(`secondLastBtn = ${secondLastBtn}`);
-
         if (currentBtn !== "n") {
             historyPara.textContent = "";
         }
@@ -71,7 +68,7 @@ buttons.forEach(button => {
             }
 
         } else {
-            if (lastBtn === "0" && (secondLastBtn === " " || !secondLastBtn)) {
+            if (lastBtn === "0" && (secondLastBtn === "-" || secondLastBtn === " " || !secondLastBtn)) {
                 inputPara.textContent = inputPara.textContent.slice(0, -1) + currentBtn;
                 calculationString = calculationString.slice(0, -1) + currentBtn;
             } else {
