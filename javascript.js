@@ -88,7 +88,14 @@ function calculate(string) {
 }
 
 function operate(string, operator) {
-    let operationIndex = string.indexOf(operator, 1);
+    let operationIndex = -1;
+
+    for (let i = 0; i < string.length; ++i) {
+        if (string[i] === operator && string[i-1] !== "e") {
+            operationIndex = i;
+            break;
+        }
+    }
 
     if (operationIndex === -1) return string;
 
