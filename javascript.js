@@ -58,7 +58,7 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === ".") {
-            if (lastBtn === undefined || (secondLastBtn === undefined && !isNaN(lastBtn)) || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
+            if (!inputPara.textContent.includes(".") || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
                 inputPara.textContent += currentBtn;
                 calculationString += currentBtn;
             }
@@ -103,14 +103,14 @@ function operate(string, operator) {
     let followingOperationIndex = string.length;
 
     for (let i = operationIndex-1; i > 0; --i) {
-        if (operations.includes(string[i]) && !isNaN(string[i-1])) {
+        if (operations.includes(string[i]) && !operations.includes(string[i-1]) && string[i-1] !== "e") {
             previousOperationIndex = i;
             break;
         }
     }
 
     for (let i = operationIndex+1; i <= string.length; ++i) {
-        if (operations.includes(string[i]) && !isNaN(string[i-1])) {
+        if (operations.includes(string[i]) && !operations.includes(string[i-1]) && string[i-1] !== "e") {
             followingOperationIndex = i;
             break;
         }
