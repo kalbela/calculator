@@ -29,7 +29,13 @@ buttons.forEach(button => {
             if (inputPara.textContent.endsWith("Infinity")) {
                 inputPara.textContent = inputPara.textContent.slice(0, -8);
                 calculationString = calculationString.slice(0, -7); 
+
+            } else if (inputPara.textContent[lastIndexOfOperator - 1] === "e") {
+                inputPara.textContent = "";
+                calculationString = "";
+
             } else if (lastBtn === " ") inputPara.textContent = inputPara.textContent.slice(0, -3)
+
             else inputPara.textContent = inputPara.textContent.slice(0, -1)
             calculationString = calculationString.slice(0, -1);
 
