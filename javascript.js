@@ -17,9 +17,9 @@ buttons.forEach(button => {
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
 
-        if (currentBtn !== "n") {
-            historyPara.textContent = "";
-        }
+        // if (currentBtn !== "n") {
+        //     historyPara.textContent = "";
+        // }
 
         if (currentBtn === "r") { /*refers to clear*/
             inputPara.textContent = "";
@@ -64,19 +64,33 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === ".") {
-            if (!inputPara.textContent.includes(".") || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
+            if (inputPara.textContent[lastIndexOfOperator-1] === "e" || inputPara.textContent.endsWith("y")) {
+                if (historyPara.textContent !== "") {
+                    inputPara.textContent = ".";
+                    calculationString = ".";
+                }
+            } else if (!inputPara.textContent.includes(".") || lastIndexOfOperator > inputPara.textContent.lastIndexOf(".")) {
                 inputPara.textContent += currentBtn;
                 calculationString += currentBtn;
             }
 
         } else {
-            if (lastBtn === "0" && (secondLastBtn === "-" || secondLastBtn === " " || !secondLastBtn)) {
+            if (inputPara.textContent.endsWith("y")) {
+                if (historyPara.textContent !== "") {
+                    inputPara.textContent = currentBtn;
+                    calculationString = currentBtn;
+                }
+            } else if (lastBtn === "0" && (secondLastBtn === "-" || secondLastBtn === " " || !secondLastBtn)) {
                 inputPara.textContent = inputPara.textContent.slice(0, -1) + currentBtn;
                 calculationString = calculationString.slice(0, -1) + currentBtn;
             } else {
                 inputPara.textContent += currentBtn;
                 calculationString += currentBtn;
             }
+        }
+
+        if (currentBtn !== "n") {
+            historyPara.textContent = "";
         }
     })
 })
