@@ -17,9 +17,10 @@ buttons.forEach(button => {
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
 
-        // if (currentBtn !== "n") {
-        //     historyPara.textContent = "";
-        // }
+        if (inputPara.textContent === "NaN" && currentBtn !== "n") {
+            inputPara.textContent = "";
+            calculationString = "";
+        }
 
         if (currentBtn === "r") { /*refers to clear*/
             inputPara.textContent = "";
@@ -40,7 +41,7 @@ buttons.forEach(button => {
             calculationString = calculationString.slice(0, -1);
 
         } else if (currentBtn === "n") { /*refers to equation*/
-            if (!operations.includes(calculationString.at(-1)) && inputPara.textContent !== "" && isNaN(inputPara.textContent)) {
+            if (!operations.includes(calculationString.at(-1)) && inputPara.textContent !== "" && isNaN(inputPara.textContent) && inputPara.textContent !== "." && inputPara.textContent !== "NaN") {
 
                 historyPara.textContent = inputPara.textContent + " =";
                 inputPara.textContent = calculate(calculationString);
