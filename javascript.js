@@ -83,8 +83,19 @@ function calculate(string) {
     operators1.forEach(operator => string = operate(string, operator));
     operators2.forEach(operator => string = operate(string, operator));
 
-    if (!string.endsWith("y") && +string % 1 !== 0 && string.length-string.indexOf(".") > 8) return (+string).toFixed(8);
-    return string;
+    return convertToFixedDigit(string);
+}
+
+function convertToFixedDigit(number) {
+    if (number.endsWith("y")) return number;
+    else if (number.includes("e")) {
+        let parts = number.split("e");
+        let firstPart = parts[0];
+        firstPart = +(+firstPart).toFixed(3);
+        return firstPart + "e" + parts[1];
+    } else {
+        return +(+number).toFixed(7);
+    }
 }
 
 function operate(string, operator) {
