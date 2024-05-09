@@ -17,17 +17,15 @@ buttons.forEach(button => {
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
 
-        if (inputPara.textContent === "NaN" && currentBtn !== "n") {
-            inputPara.textContent = "";
-            calculationString = "";
-        }
-
         if (currentBtn === "r") { /*refers to clear*/
             inputPara.textContent = "";
             calculationString = "";
 
         } else if (currentBtn === "e") { /*refers to delete*/
-            if (inputPara.textContent.endsWith("Infinity")) {
+            if (inputPara.textContent === "Error") {
+                inputPara.textContent = "";
+                calculationString = "";
+            } else if (inputPara.textContent.endsWith("Infinity")) {
                 inputPara.textContent = inputPara.textContent.slice(0, -8);
                 calculationString = calculationString.slice(0, -7); 
 
@@ -41,7 +39,7 @@ buttons.forEach(button => {
             calculationString = calculationString.slice(0, -1);
 
         } else if (currentBtn === "n") { /*refers to equation*/
-            if (!operations.includes(calculationString.at(-1)) && inputPara.textContent !== "" && isNaN(inputPara.textContent) && inputPara.textContent !== "." && inputPara.textContent !== "NaN") {
+            if (!operations.includes(calculationString.at(-1)) && inputPara.textContent !== "" && isNaN(inputPara.textContent) && inputPara.textContent !== "." && inputPara.textContent !== "Error") {
 
                 historyPara.textContent = inputPara.textContent + " =";
                 inputPara.textContent = calculate(calculationString);
@@ -56,6 +54,10 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === "-") {
+            if (inputPara.textContent === "Error") {
+                inputPara.textContent = "";
+                calculationString = "";
+            }
             if (inputPara.textContent === "" || secondLastBtn === "÷" || secondLastBtn === "×") {
                 inputPara.textContent += `${currentBtn}`;
                 calculationString += currentBtn;
@@ -65,6 +67,10 @@ buttons.forEach(button => {
             }
 
         } else if (currentBtn === ".") {
+            if (inputPara.textContent === "Error") {
+                inputPara.textContent = "";
+                calculationString = "";
+            }
             if (inputPara.textContent[lastIndexOfOperator-1] === "e" || inputPara.textContent.endsWith("y")) {
                 if (historyPara.textContent !== "") {
                     inputPara.textContent = ".";
@@ -76,6 +82,10 @@ buttons.forEach(button => {
             }
 
         } else {
+            if (inputPara.textContent === "Error") {
+                inputPara.textContent = "";
+                calculationString = "";
+            }
             if (inputPara.textContent.endsWith("y")) {
                 if (historyPara.textContent !== "") {
                     inputPara.textContent = currentBtn;
@@ -91,7 +101,9 @@ buttons.forEach(button => {
         }
 
         if (currentBtn !== "n") {
-            historyPara.textContent = "";
+            if (!(inputPara.textContent === "Error" && operations.includes(currentBtn, 1))){
+                historyPara.textContent = "";
+            }
         }
     })
 })
@@ -108,7 +120,8 @@ function calculate(string) {
 }
 
 function convertToFixedDigit(number) {
-    if (number.endsWith("y")) return number;
+    if (number === "NaN") return "Error";
+    else if (number.endsWith("y")) return number;
     else if (number.includes("e")) {
         let parts = number.split("e");
         let firstPart = parts[0];
