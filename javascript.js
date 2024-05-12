@@ -44,6 +44,7 @@ buttons.forEach(button => {
                 historyPara.textContent = inputPara.textContent + " =";
                 inputPara.textContent = calculate(calculationString);
                 calculationString = inputPara.textContent;
+                resultContainer.scrollLeft = 0;
             }
 
         } else if (operations.includes(currentBtn, 1)) {
