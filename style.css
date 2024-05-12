@@ -29,9 +29,21 @@ body {
     width: 100%;
     height: 25%;
     border-bottom: 3px solid rgb(67, 71, 76);
-    text-align: right;
     position: relative;
-    overflow: hidden;
+    overflow-x: scroll;
+    direction: rtl;
+}
+
+.result-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.result-container::-webkit-scrollbar-track {
+    background: #f2ebdb;
+}
+
+.result-container::-webkit-scrollbar-thumb {
+    background: rgb(203, 203, 203);
 }
 
 .history-para {
@@ -39,18 +51,20 @@ body {
     color: #838383;
     font-weight: 600;
     position: absolute;
-    right: 7%;
     top: 25%;
     width: max-content;
+    direction: ltr;
+    padding: 0 15px 0 10px;
 }
 
 .input-para {
     font-size: 26px;
     font-weight: 800;
     position: absolute;
-    right: 7%;
     top: 50%;
     width: max-content;
+    direction: ltr;
+    padding: 0 15px 0 10px;
 }
 
 .function-container {
