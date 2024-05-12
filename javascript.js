@@ -17,6 +17,8 @@ buttons.forEach(button => {
 
         let lastIndexOfOperator = inputPara.textContent.split("").findLastIndex(item => operations.includes(item));
 
+        resultContainer.scrollLeft = 0;
+
         if (currentBtn === "r") { /*refers to clear*/
             inputPara.textContent = "";
             calculationString = "";
@@ -44,7 +46,6 @@ buttons.forEach(button => {
                 historyPara.textContent = inputPara.textContent + " =";
                 inputPara.textContent = calculate(calculationString);
                 calculationString = inputPara.textContent;
-                resultContainer.scrollLeft = 0;
             }
 
         } else if (operations.includes(currentBtn, 1)) {
