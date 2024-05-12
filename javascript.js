@@ -118,6 +118,7 @@ function calculate(string) {
     operators1.forEach(operator => string = operate(string, operator));
     operators2.forEach(operator => string = operate(string, operator));
 
+    if (string > 999999999999999) return convertToFixedDigit((+string).toExponential())
     return convertToFixedDigit(string);
 }
 
