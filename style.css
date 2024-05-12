@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     background: #f2ebdb;
+    overflow: hidden;
 }
 
 .calc-container {
