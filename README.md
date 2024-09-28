@@ -1,1 +1,1 @@
-live link: https://kalbela.github.io/calculator/
+link: https://kalbela.github.io/calculator/
